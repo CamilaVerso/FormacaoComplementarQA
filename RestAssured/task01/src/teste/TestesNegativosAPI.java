@@ -9,7 +9,7 @@ import static org.hamcrest.Matchers.*;
 
 public class TestesNegativosAPI {
 
-    @Test //POST
+    @Test //POST  -- Para este teste passar novamente precisa de um novo token
     public void testPostProdutoComNomeJaCadastrado(){
        String token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImVtYWlsQHFhLmNvbS5iciIsInBhc3N3b3JkIjoidGVzdGUiLCJpYXQiOjE3MTIxNTMyMzksImV4cCI6MTcxMjE1MzgzOX0.5Lo-rO7Y64LeFuMhtFLoZBs9gKSqThyMrOckperqabQ";
         String requestBody = "{\"nome\": \"mouse 23\",\"preco\": 470, \"descricao\": \"Mouse\", \"quantidade\": 381 }";
@@ -38,7 +38,7 @@ public class TestesNegativosAPI {
 
     }
 
-    @Test //PUT -- Para este teste passar novamente precisa de um novo token e um novo nome de produto
+    @Test //PUT -- Para este teste passar novamente precisa de um novo token
     public void testAtualizarProdutoParaUmNomeJaUtilizado(){
         String token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImVtYWlsQHFhLmNvbS5iciIsInBhc3N3b3JkIjoidGVzdGUiLCJpYXQiOjE3MTIxNTM2ODIsImV4cCI6MTcxMjE1NDI4Mn0.33EYSIRd83g6tkmCrKfS35WLUl7FhL9a8Zk9k8Blesk";
         String novoNome = "Notebook";
