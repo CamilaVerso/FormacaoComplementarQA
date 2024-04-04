@@ -64,12 +64,13 @@ public class UsuariosFuncionalTest {
                 .pathParams("_id", idUsuario)
                 .contentType(ContentType.JSON)
                 .body("""
-                        {
-                         "nome": "Adam Costa Barbosa",
-                         "email": "Jarrod_Runolfsson@yahoo.com",
-                         "password": "rrGoV9b_bL1umku",
-                         "administrador": "true",
-                        }
+                         {
+                              "nome": "Adam Costa da Silva",
+                              "email": "Jarrod_Runolfsson@yahoo.com",
+                              "password": "rrGoV9b_bL1umku",
+                              "administrador": "true"
+                             
+                            }
                         """
                 )
         .when()
@@ -79,6 +80,23 @@ public class UsuariosFuncionalTest {
                 .statusCode(200)
                 .body("message", equalTo("Registro alterado com sucesso"))
         ;
+    }
+
+    @Test
+    public void testDeletarUsuarioComSucesso(){
+        String idUsuario = "eNyGWfbuZ571bOBh";
+
+        given()
+                .log().all()
+                .pathParams("_id", idUsuario)
+        .when()
+                .delete("/usuarios/{_id}")
+        .then()
+                .log().all()
+                .statusCode(200)
+                .body("message", equalTo("Registro excluído com sucesso"))
+        ;
+
     }
 
 }
