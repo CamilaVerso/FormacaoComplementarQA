@@ -12,18 +12,22 @@ public class TestesPositivosAPI {
     @Test
     public void testStatusCodeIs200() {
         given()
+                .log().all()
                 .when()
                 .get("http://localhost:3000/produtos")
                 .then()
+                .log().all()
                 .statusCode(200);
     }
 
     @Test
     public void testListarProdutosComSucesso() {
         given()
-                .when()
+                .log().all()
+        .when()
                 .get("http://localhost:3000/produtos")
-                .then()
+        .then()
+                .log().all()
                 .statusCode(200)
                 .body("produtos", not(empty()))
                 .body("produtos._id", everyItem(notNullValue()))
@@ -36,9 +40,9 @@ public class TestesPositivosAPI {
     public void testBuscarProdutoPorId() {
         given()
                 .pathParams("id", "09KYZUVSa4gZs4ay")
-                .when()
+        .when()
                 .get("http://localhost:3000/produtos/{id}")
-                .then()
+        .then()
                 .statusCode(200)
                 .body("nome", equalTo("Impressora"))
                 .body("descricao", equalTo("Et quia delectus veniam perspiciatis ipsam ipsa reiciendis sequi. Qui corrupti ut omnis hic et aut. Possimus pariatur aut incidunt sit omnis dolore. Ullam veritatis repellendus natus. Sunt autem dolores doloremque. Odio enim expedita provident aperiam neque."))
@@ -56,13 +60,13 @@ public class TestesPositivosAPI {
         double novaQuantidade = 500;
 
                 given()
-                .contentType(ContentType.JSON)
-                .header("Authorization", "Bearer " + token)
-                .body("{ \"nome\": \"" + novoNome + "\", \"descricao\": \"" + novaDescricao + "\", \"preco\": " + novoPreco + ", \"quantidade\": " + novaQuantidade + " }")
+                    .contentType(ContentType.JSON)
+                    .header("Authorization", "Bearer " + token)
+                    .body("{ \"nome\": \"" + novoNome + "\", \"descricao\": \"" + novaDescricao + "\", \"preco\": " + novoPreco + ", \"quantidade\": " + novaQuantidade + " }")
                 .when()
-                .put("http://localhost:3000/produtos/{id}", "JwZvPFxLiqCcld1T")
+                    .put("http://localhost:3000/produtos/{id}", "JwZvPFxLiqCcld1T")
                 .then()
-                .statusCode(200);
+                    .statusCode(200);
     }
 
     @Test //Para este teste passar novamente precisa de um novo token e um novo nome de produto
@@ -74,9 +78,9 @@ public class TestesPositivosAPI {
                        .contentType(ContentType.JSON)
                        .header("Authorization", "Bearer " + token)
                        .body(requestBody)
-                       .when()
+               .when()
                        .post("http://localhost:3000/produtos")
-                       .then()
+               .then()
                        .statusCode(201)
                        .body("message", equalTo("Cadastro realizado com sucesso"))
                        .body("_id", notNullValue());
