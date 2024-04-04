@@ -1,14 +1,24 @@
-package usuarios;
+package com.vemser.rest.tests.usuarios;
 
 import io.restassured.http.ContentType;
+import net.datafaker.Faker;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import pojo.Response;
+import pojo.UsuarioPojo;
+
+import java.util.Locale;
+import java.util.Random;
 
 import static io.restassured.RestAssured.baseURI;
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
 
 public class UsuariosFuncionalTest {
+
+    private Faker faker = new Faker(new Locale("PT-BR"));
+    private Random geradorBoolean = new Random();
 
     @BeforeEach
     public void setUp(){
@@ -18,28 +28,29 @@ public class UsuariosFuncionalTest {
     @Test
     public void testCadastrarUsuarioComSucesso(){
 
+        UsuarioPojo usuario = new UsuarioPojo();
+        usuario.setNome(faker.name().firstName() + " " + faker.name().lastName());
+        usuario.setEmail(faker.internet().emailAddress());
+        usuario.setPassword(faker.internet().password());
+        usuario.setAdministrador(String.valueOf(geradorBoolean.nextBoolean()));
+
+
+
+        pojo.Response response =
         given()
                 .log().all()
                 .contentType(ContentType.JSON)
-                .body(
-                         """
-                         {
-                           "nome": "Camila Pereira",
-                           "email": "camilapereira@qa.com.br",
-                            "password": "teste",
-                           "administrador": "true"
-                         }
-                         """
-                )
+                .body(usuario)
         .when()
                 .post("/usuarios")
         .then()
                 .log().all()
                 .statusCode(201)
-                .header("Content-Type", "application/json; charset=utf-8")
-                .body("message", equalTo("Cadastro realizado com sucesso"))
-                .body("_id", notNullValue())
+                .extract().as(Response.class)
                 ;
+
+        Assertions.assertEquals("Cadastro realizado com sucesso", response.getMessage());
+        Assertions.assertNotNull(response.getId());
     }
 
     @Test

@@ -1,4 +1,4 @@
-package usuarios;
+package com.vemser.rest.tests.usuarios;
 
 import io.restassured.http.ContentType;
 import org.junit.jupiter.api.BeforeEach;

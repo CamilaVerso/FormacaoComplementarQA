@@ -1,4 +1,4 @@
-package login;
+package com.vemser.rest.tests.login;
 
 import io.restassured.http.ContentType;
 import org.junit.jupiter.api.BeforeEach;
