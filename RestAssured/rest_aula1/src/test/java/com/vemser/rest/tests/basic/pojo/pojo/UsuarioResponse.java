@@ -1,8 +1,8 @@
-package pojo;
+package com.vemser.rest.tests.basic.pojo.pojo;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class Response {
+public class UsuarioResponse {
 
     private String message;
     @JsonProperty("_id") //assim porque não pode ter _ no começo da palavra

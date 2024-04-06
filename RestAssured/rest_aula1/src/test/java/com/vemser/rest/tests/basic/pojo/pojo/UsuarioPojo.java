@@ -1,4 +1,4 @@
-package pojo;
+package com.vemser.rest.tests.basic.pojo.pojo;
 
 public class UsuarioPojo {
 
