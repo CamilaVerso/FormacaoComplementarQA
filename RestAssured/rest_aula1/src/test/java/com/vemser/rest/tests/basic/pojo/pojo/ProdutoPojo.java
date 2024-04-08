@@ -7,7 +7,7 @@ public class ProdutoPojo {
     private String descricao;
     private int quantidade;
 
-    public ProdutoPojo(String nome, double preco, String descricao, int quantidade) {
+    public ProdutoPojo() {
         this.nome = nome;
         this.preco = preco;
         this.descricao = descricao;
