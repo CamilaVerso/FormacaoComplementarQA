@@ -39,9 +39,9 @@ public class UsuariosFuncionalTest {
                         .log().all()
                         .contentType(ContentType.JSON)
                         .body(usuario)
-                        .when()
+                .when()
                         .post("/usuarios")
-                        .then()
+                .then()
                         .log().all()
                         .statusCode(201)
                         .extract().as(UsuarioResponse.class);
@@ -72,6 +72,7 @@ public class UsuariosFuncionalTest {
 
     }
 
+
     @Test
     public void testCadastrarUsuarioComSucessoComClient() {
 
@@ -79,7 +80,7 @@ public class UsuariosFuncionalTest {
         Usuario usuario = UsuarioDataFactory.usuarioValido();
 
         usuarioClient.cadastrarUsuario(usuario)
-                .then()
+        .then()
                 .log().all()
                 .statusCode(201)
         ;
@@ -112,9 +113,9 @@ public class UsuariosFuncionalTest {
 
         given()
                 .log().all()
-                .when()
+        .when()
                 .get("/usuarios")
-                .then()
+        .then()
                 .log().all()
                 .statusCode(200);
 
@@ -131,9 +132,9 @@ public class UsuariosFuncionalTest {
                 .pathParams("_id", usuarioAtualizar.getId())
                 .contentType(ContentType.JSON)
                 .body(usuarioAtualizado)
-                .when()
+        .when()
                 .put("/usuarios/{_id}")
-                .then()
+        .then()
                 .log().all()
                 .statusCode(200)
                 .body("message", equalTo("Registro alterado com sucesso"))
@@ -149,9 +150,9 @@ public class UsuariosFuncionalTest {
         given()
                 .log().all()
                 .pathParams("_id", idUsuario)
-                .when()
+        .when()
                 .delete("/usuarios/{_id}")
-                .then()
+        .then()
                 .log().all()
                 .statusCode(200)
                 .body("message", equalTo("Registro excluído com sucesso"))
@@ -164,9 +165,9 @@ public class UsuariosFuncionalTest {
         return
                 given()
                         .pathParams("_id", isUsuario)
-                        .when()
+                .when()
                         .delete("usuarios/{_id}")
-                        .then()
+                .then()
                         .statusCode(200)
                         .extract().as(UsuarioResponse.class)
                 ;
@@ -181,9 +182,9 @@ public class UsuariosFuncionalTest {
                         .log().all()
                         .contentType(ContentType.JSON)
                         .body(usuario)
-                        .when()
+                .when()
                         .post("/usuarios")
-                        .then()
+                .then()
                         .log().all()
                         .statusCode(201)
                         .extract().as(UsuarioResponse.class)
