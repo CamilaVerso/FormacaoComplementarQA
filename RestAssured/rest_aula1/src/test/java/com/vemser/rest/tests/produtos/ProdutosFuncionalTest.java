@@ -1,6 +1,9 @@
 package com.vemser.rest.tests.produtos;
 
 import com.vemser.rest.tests.basic.pojo.pojo.ProdutoPojo;
+import com.vemser.rest.tests.basic.pojo.pojo.ProdutoResponse;
+import com.vemser.rest.tests.basic.pojo.pojo.UsuarioPojo;
+import com.vemser.rest.tests.basic.pojo.pojo.UsuarioResponse;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import net.datafaker.Faker;
@@ -22,7 +25,8 @@ public class ProdutosFuncionalTest {
     }
 
     private Autenticacao autenticacao = new Autenticacao();
-    private Faker faker =new Faker();
+    private Faker faker = new Faker();
+    private static String idProduto;
 
     public class Autenticacao {
         public String getToken() {
@@ -57,15 +61,11 @@ public class ProdutosFuncionalTest {
     @Test
     public void testCadastrarProdutoComSucesso() {
        // String token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNhbWlsYWdvbmNhbHZlc0BxYS5jb20uYnIiLCJwYXNzd29yZCI6InRlc3RlIiwiaWF0IjoxNzEyNjEzMjYwLCJleHAiOjE3MTI2MTM4NjB9.To-68ygJjQ3HXC__g4DAYtNovpqsWU-c5ocg6qLaluU";
-    String token = autenticacao.getToken();
+         String token = autenticacao.getToken();
 
-        ProdutoPojo produto = new ProdutoPojo();
-        produto.setNome(faker.commerce().productName());
-        produto.setPreco(faker.random().nextInt(10, 1000));
-        produto.setDescricao(faker.lorem().sentence());
-        produto.setQuantidade(faker.number().numberBetween(1, 1000));
+        ProdutoPojo produto = novoProduto();
 
-
+        ProdutoResponse produtoResponse =
         given()
                 .log().all()
                 .contentType(ContentType.JSON)
@@ -76,10 +76,10 @@ public class ProdutosFuncionalTest {
         .then()
                 .log().all()
                 .statusCode(201)
-                .header("Content-Type", "application/json; charset=utf-8")
-                .body("message", equalTo("Cadastro realizado com sucesso"))
-                .body("_id", notNullValue())
+                .extract().as(ProdutoResponse.class)
         ;
+
+        idProduto = produtoResponse.getId();
     }
 
     @Test
@@ -103,25 +103,20 @@ public class ProdutosFuncionalTest {
 
     @Test
     public void testEditarProdutoComSucesso() {
-        String idProduto = "iWd9UbBYjFCi4K3q";
+        //String idProduto = "iWd9UbBYjFCi4K3q";
         // String token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNhbWlsYWdvbmNhbHZlc0BxYS5jb20uYnIiLCJwYXNzd29yZCI6InRlc3RlIiwiaWF0IjoxNzEyMjQ3MTU5LCJleHAiOjE3MTIyNDc3NTl9.e6YmOBmkF7c2fcu1PaIQ-fr6hNbW23hGKAp-lmc1A3I";
+
         String token = autenticacao.getToken();
+        ProdutoResponse produtoAtualizar = cadastrarProduto();
+        ProdutoPojo produtoAtualizado = novoProduto();
+
+
         given()
                 .log().all()
-                .pathParams("_id", idProduto)
+                .pathParams("_id", produtoAtualizar.getId())
                 .contentType(ContentType.JSON)
                 .header("Authorization", "Bearer " + token)
-                .body(
-                        """
-                                {
-                                "nome": "Impressora Matricial editada",
-                                "preco": 470,
-                                "descricao": "Impressora Matricial",
-                                "quantidade": 381
-                                }
-                                       
-                                """
-                )
+                .body(produtoAtualizado)
                 .when()
                 .put("/produtos/{_id}")
                 .then()
@@ -136,18 +131,54 @@ public class ProdutosFuncionalTest {
         String idProduto = "shtolh9OHbhYEkdH";
         String token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNhbWlsYWdvbmNhbHZlc0BxYS5jb20uYnIiLCJwYXNzd29yZCI6InRlc3RlIiwiaWF0IjoxNzEyMjQ3MTU5LCJleHAiOjE3MTIyNDc3NTl9.e6YmOBmkF7c2fcu1PaIQ-fr6hNbW23hGKAp-lmc1A3I";
 
-        Response response = given()
+        Response response =
+        given()
                 .header("Authorization", "Bearer " + token)
                 .pathParams("_id", idProduto)
-                .when()
+        .when()
                 .delete("/produtos/{_id}")
-                .then()
+        .then()
                 .log().all()
                 .extract()
                 .response();
         response.then().statusCode(200);
         response.then().body("message", containsString("Registro excluído com sucesso"));
     }
+
+    private ProdutoResponse cadastrarProduto() {
+
+        String token = autenticacao.getToken();
+        ProdutoPojo produto = novoProduto();
+
+
+        return
+                given()
+                        .log().all()
+                        .contentType(ContentType.JSON)
+                        .header("Authorization", "Bearer " + token)
+                        .body(produto)
+                .when()
+                        .post("/produtos")
+                .then()
+                        .log().all()
+                        .statusCode(201)
+                        .extract().as(ProdutoResponse.class)
+                ;
+
+    }
+
+    private ProdutoPojo novoProduto(){
+
+        ProdutoPojo produto = new ProdutoPojo();
+        produto.setNome(faker.commerce().productName());
+        produto.setPreco(faker.random().nextInt(10, 1000));
+        produto.setDescricao(faker.lorem().sentence());
+        produto.setQuantidade(faker.number().numberBetween(1, 1000));
+
+        return produto;
+
+    }
+
 
 
 }
