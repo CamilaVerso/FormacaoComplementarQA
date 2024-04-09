@@ -160,11 +160,11 @@ public class UsuariosFuncionalTest {
 
     }
 
-    private UsuarioResponse excluirUsuario(String isUsuario) {
+    private UsuarioResponse excluirUsuario(String idUsuario) {
 
         return
                 given()
-                        .pathParams("_id", isUsuario)
+                        .pathParams("_id", idUsuario)
                 .when()
                         .delete("usuarios/{_id}")
                 .then()

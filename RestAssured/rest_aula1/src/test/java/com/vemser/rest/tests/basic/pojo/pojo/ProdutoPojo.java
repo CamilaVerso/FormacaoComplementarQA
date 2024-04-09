@@ -7,11 +7,17 @@ public class ProdutoPojo {
     private String descricao;
     private int quantidade;
 
-    public ProdutoPojo() {
+
+    public ProdutoPojo(String nome, double preco, String descricao, int quantidade) {
         this.nome = nome;
         this.preco = preco;
         this.descricao = descricao;
         this.quantidade = quantidade;
+
+    }
+
+    public ProdutoPojo() {
+
     }
 
     public String getNome() {
@@ -45,4 +51,5 @@ public class ProdutoPojo {
     public void setQuantidade(int quantidade) {
         this.quantidade = quantidade;
     }
+
 }

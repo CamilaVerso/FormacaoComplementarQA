@@ -2,8 +2,6 @@ package com.vemser.rest.tests.produtos;
 
 import com.vemser.rest.tests.basic.pojo.pojo.ProdutoPojo;
 import com.vemser.rest.tests.basic.pojo.pojo.ProdutoResponse;
-import com.vemser.rest.tests.basic.pojo.pojo.UsuarioPojo;
-import com.vemser.rest.tests.basic.pojo.pojo.UsuarioResponse;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import net.datafaker.Faker;
@@ -111,25 +109,34 @@ public class ProdutosFuncionalTest {
         ProdutoPojo produtoAtualizado = novoProduto();
 
 
+
         given()
                 .log().all()
                 .pathParams("_id", produtoAtualizar.getId())
                 .contentType(ContentType.JSON)
                 .header("Authorization", "Bearer " + token)
                 .body(produtoAtualizado)
-                .when()
+        .when()
                 .put("/produtos/{_id}")
-                .then()
+        .then()
                 .log().all()
                 .statusCode(200)
                 .body("message", equalTo("Registro alterado com sucesso"))
         ;
+
+        String idProduto = produtoAtualizar.getId();
+
+        excluirProduto(idProduto);
+
+
     }
 
     @Test
     public void testDeletarUmProdutoComSucesso() {
         String idProduto = "shtolh9OHbhYEkdH";
-        String token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNhbWlsYWdvbmNhbHZlc0BxYS5jb20uYnIiLCJwYXNzd29yZCI6InRlc3RlIiwiaWF0IjoxNzEyMjQ3MTU5LCJleHAiOjE3MTIyNDc3NTl9.e6YmOBmkF7c2fcu1PaIQ-fr6hNbW23hGKAp-lmc1A3I";
+        //String token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNhbWlsYWdvbmNhbHZlc0BxYS5jb20uYnIiLCJwYXNzd29yZCI6InRlc3RlIiwiaWF0IjoxNzEyMjQ3MTU5LCJleHAiOjE3MTIyNDc3NTl9.e6YmOBmkF7c2fcu1PaIQ-fr6hNbW23hGKAp-lmc1A3I";
+
+        String token = autenticacao.getToken();
 
         Response response =
         given()
@@ -167,6 +174,24 @@ public class ProdutosFuncionalTest {
 
     }
 
+    private ProdutoResponse excluirProduto(String idProduto) {
+        String token = autenticacao.getToken();
+
+        return
+                given()
+                        .log().all()
+                        .pathParams("_id", idProduto)
+                        .header("Authorization", "Bearer " + token)
+                .when()
+                        .delete("produtos/{_id}")
+                .then()
+                        .log().all()
+                        .statusCode(200)
+                        .extract().as(ProdutoResponse.class)
+                ;
+    }
+
+
     private ProdutoPojo novoProduto(){
 
         ProdutoPojo produto = new ProdutoPojo();
@@ -174,6 +199,7 @@ public class ProdutosFuncionalTest {
         produto.setPreco(faker.random().nextInt(10, 1000));
         produto.setDescricao(faker.lorem().sentence());
         produto.setQuantidade(faker.number().numberBetween(1, 1000));
+
 
         return produto;
 
