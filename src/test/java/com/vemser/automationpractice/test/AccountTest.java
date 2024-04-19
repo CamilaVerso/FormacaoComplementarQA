@@ -9,6 +9,7 @@ import org.junit.Test;
 public class AccountTest extends BaseTest{
 
     AccountPage accountPage = new AccountPage();
+
     AccountData accountData = new AccountData();
 
     @Test
