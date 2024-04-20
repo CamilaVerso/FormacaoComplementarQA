@@ -17,6 +17,8 @@ public class CreateAccountData {
 
         createAccountDto.setPassword(dataFakeGenerator.passwordFaker());
 
+        createAccountDto.setName(dataFakeGenerator.firstNameFake());
+        createAccountDto.setEmail(dataFakeGenerator.emailFaker());
         createAccountDto.setDay(String.valueOf(random.nextInt(31) + 1));
         createAccountDto.setMonth("July");
         createAccountDto.setYear(String.valueOf(random.nextInt(103) + 1900));

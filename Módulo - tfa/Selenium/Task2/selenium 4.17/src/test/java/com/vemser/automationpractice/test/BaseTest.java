@@ -22,4 +22,5 @@ public class BaseTest extends SeleniumService{
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("const elements = document.getElementsByClassName('adsbygoogle adsbygoogle-noablate'); while (elements.length > 0) elements[0].remove()");
     }
+
 }

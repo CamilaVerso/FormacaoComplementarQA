@@ -63,4 +63,9 @@ public class BasePage extends Elements {
         Select select = new Select(element);
         select.selectByVisibleText(option);
     }
+
+    protected static void verifyElement(By by){
+        waitElement(by);
+        element(by).isDisplayed();
+    }
 }

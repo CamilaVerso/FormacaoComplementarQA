@@ -1,6 +1,7 @@
 package com.vemser.automationpractice.page;
 
 import com.vemser.automationpractice.dto.CreateAccountDto;
+import org.junit.Assert;
 import org.openqa.selenium.By;
 
 public class CreateAccountPage extends BasePage{
@@ -38,14 +39,25 @@ public class CreateAccountPage extends BasePage{
     private static final By mobilePhone = By.cssSelector("#mobile_number");
     private static final By btnCreateAccount = By.cssSelector("#form > div > div > div > div.login-form > form > button");
 
+    private static final By textAccountCreate = By.cssSelector("#form > div > div > div > h2");
+    //private static final By btnContinue = By.cssSelector("btn btn-primary");
+    private static final By btnContinue = By.xpath("//*[@id=\"form\"]/div/div/div/div/a");
+    private static final By btnDeleteAccount = By.cssSelector("#header > div > div > div > div.col-sm-8 > div > ul > li:nth-child(5) > a");
+    private static final By textAccountDeletedPage = By.cssSelector("#form > div > div > div > h2 > b");
+    private static final By btnContinueDeletePage = By.cssSelector("#form > div > div > div > div > a");
+    private static final By carousel = By.cssSelector("#slider-carousel");
+
+    public void verifyHomePage(){
+        verifyElement(carousel);
+    }
 
 
     public void signupPage(){
         click(signupLoginLink);
     }
-    public void createNewAccount(){
-    fillInput(inputName, "Camila");
-    fillInput(inputEmail, "camila@camila1.com");
+    public void createNewAccount(String name, String email){
+    fillInput(inputName, name);
+    fillInput(inputEmail, email);
     click(btnSignUp);
 }
     public void selectPronoun(){
@@ -116,13 +128,51 @@ public class CreateAccountPage extends BasePage{
         click(btnCreateAccount);
     }
 
+    public String confirmCreateAccountText(){
+         return readText(textAccountCreate);
+    }
 
+    public void btnContinue(){
+        clickWithWait(btnContinue);
+    }
+
+    public void confirmAccountPage(){
+        String msg = confirmCreateAccountText();
+        Assert.assertEquals(msg, "ACCOUNT CREATED!");
+        System.out.println(msg);
+
+        btnContinue();
+        System.out.println("Cliquei no botão!");
+    }
+
+public void deleteAccount(){
+        click(btnDeleteAccount);
+}
+
+public String textConfirmDelete(){
+        return readText(textAccountDeletedPage);
+}
+
+public void btnContinueHome(){
+        click(btnContinueDeletePage);
+}
 
     public void selectCheckbox(){
         selectNewsletter();
         selectOffer();
     }
 
+    public void fluxoDeleteAccount(){
+        btnContinue();
+        verifyHomePage();
+        deleteAccount();
+
+        String msg = textConfirmDelete();
+        Assert.assertEquals(msg, "ACCOUNT DELETED!");
+        System.out.println(msg);
+        btnContinueHome();
+        verifyHomePage();
+    }
 
 
 }

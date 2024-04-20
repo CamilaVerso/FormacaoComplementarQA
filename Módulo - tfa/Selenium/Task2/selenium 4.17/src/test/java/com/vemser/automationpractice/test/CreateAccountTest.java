@@ -15,7 +15,7 @@ public class CreateAccountTest extends BaseTest{
         CreateAccountDto createAccountDto = createAccountData.insertAddressWithValidData();
 
         createAccountPage.signupPage();
-        createAccountPage.createNewAccount();
+        createAccountPage.createNewAccount(createAccountDto.getName(), createAccountDto.getEmail());
         createAccountPage.selectPronoun();
         createAccountPage.password();
         createAccountPage.selectDay(createAccountDto.getDay());
@@ -33,9 +33,9 @@ public class CreateAccountTest extends BaseTest{
         createAccountPage.fillZipCode(createAccountDto.getZipCode());
         createAccountPage.fillMobilePhone(createAccountDto.getMobilePhone());
         createAccountPage.clickCreateAccount();
-
-
-
+        createAccountPage.confirmAccountPage();
+        closeAdsByGoogle();
+        createAccountPage.fluxoDeleteAccount();
 
 
     }
