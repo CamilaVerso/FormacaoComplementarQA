@@ -1,56 +1,44 @@
 package com.vemser.automationpractice.page;
 
-import com.vemser.automationpractice.dto.CreateAccountDto;
+
 import org.junit.Assert;
 import org.openqa.selenium.By;
 
 public class CreateAccountPage extends BasePage{
 
     private static final By signupLoginLink = By.cssSelector("#header > div > div > div > div.col-sm-8 > div > ul > li:nth-child(4) > a");
-
-    private static final By textSignUp = By.cssSelector("#form > div > div > div:nth-child(3) > div > h2"); // New User Signup!
-
     private static final By pronounMr = By.cssSelector("#id_gender1");
-
     private static final By inputName = By.cssSelector("#form > div > div > div:nth-child(3) > div > form > input[type=text]:nth-child(2)");
     private static final By inputEmail = By.cssSelector("#form > div > div > div:nth-child(3) > div > form > input[type=email]:nth-child(3)");
-
     private static final By btnSignUp = By.cssSelector("#form > div > div > div:nth-child(3) > div > form > button");
-
     private static final By inputPassword = By.cssSelector("#password");
-
     private static final By selectDay = By.cssSelector("#days");
     private static final By selectMonth = By.cssSelector("#months");
     private static final By selectYears = By.cssSelector("#years");
-
     private static final By checkboxNewsletter = By.cssSelector("#newsletter");
     private static final By checkboxOffer = By.cssSelector("#optin");
-
     private static final By inputFirstName = By.cssSelector("#first_name");
     private static final By inputLastName = By.cssSelector("#last_name");
     private static final By inputCompany = By.cssSelector("#company");
     private static final By inputAddress = By.cssSelector("#address1");
     private static final By inputAddress2 = By.cssSelector("#address2");
     private static final By selectCountry = By.cssSelector("#country");
-    private static final By selectCountryUnitedStates = By.cssSelector("#country > option:nth-child(2)");
     private static final By inputState = By.cssSelector("#state");
     private static final By inputCity = By.cssSelector("#city");
     private static final By inputZipCode = By.cssSelector("#zipcode");
     private static final By mobilePhone = By.cssSelector("#mobile_number");
     private static final By btnCreateAccount = By.cssSelector("#form > div > div > div > div.login-form > form > button");
-
     private static final By textAccountCreate = By.cssSelector("#form > div > div > div > h2");
-    //private static final By btnContinue = By.cssSelector("btn btn-primary");
     private static final By btnContinue = By.xpath("//*[@id=\"form\"]/div/div/div/div/a");
     private static final By btnDeleteAccount = By.cssSelector("#header > div > div > div > div.col-sm-8 > div > ul > li:nth-child(5) > a");
     private static final By textAccountDeletedPage = By.cssSelector("#form > div > div > div > h2 > b");
     private static final By btnContinueDeletePage = By.cssSelector("#form > div > div > div > div > a");
     private static final By carousel = By.cssSelector("#slider-carousel");
 
+
     public void verifyHomePage(){
         verifyElement(carousel);
     }
-
 
     public void signupPage(){
         click(signupLoginLink);
@@ -75,8 +63,8 @@ public class CreateAccountPage extends BasePage{
     public void selectDay(String day){
         fillInput(selectDay, day);
     }
-    public void selectMounth(String mounth){
-        fillInput(selectMonth, mounth);
+    public void selectMonth(String month){
+        fillInput(selectMonth, month);
     }
     public void selectYear(String year){
         fillInput(selectYears, year);
@@ -139,10 +127,7 @@ public class CreateAccountPage extends BasePage{
     public void confirmAccountPage(){
         String msg = confirmCreateAccountText();
         Assert.assertEquals(msg, "ACCOUNT CREATED!");
-        System.out.println(msg);
-
         btnContinue();
-        System.out.println("Cliquei no botão!");
     }
 
 public void deleteAccount(){
@@ -162,6 +147,7 @@ public void btnContinueHome(){
         selectOffer();
     }
 
+
     public void fluxoDeleteAccount(){
         btnContinue();
         verifyHomePage();
@@ -169,7 +155,6 @@ public void btnContinueHome(){
 
         String msg = textConfirmDelete();
         Assert.assertEquals(msg, "ACCOUNT DELETED!");
-        System.out.println(msg);
         btnContinueHome();
         verifyHomePage();
     }

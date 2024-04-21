@@ -19,7 +19,7 @@ public class CreateAccountTest extends BaseTest{
         createAccountPage.selectPronoun();
         createAccountPage.password();
         createAccountPage.selectDay(createAccountDto.getDay());
-        createAccountPage.selectMounth(createAccountDto.getMonth());
+        createAccountPage.selectMonth(createAccountDto.getMonth());
         createAccountPage.selectYear(createAccountDto.getYear());
         createAccountPage.selectCheckbox();
         createAccountPage.fillFirstName(createAccountDto.getFirstName());
@@ -37,7 +37,8 @@ public class CreateAccountTest extends BaseTest{
         closeAdsByGoogle();
         createAccountPage.fluxoDeleteAccount();
 
-
     }
+
+
 }
 
