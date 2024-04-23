@@ -1,0 +1,10 @@
+com\vemser\automationpractice\test\AccountTest.class
+com\vemser\automationpractice\test\BaseTest.class
+com\vemser\automationpractice\page\CartPage.class
+com\vemser\automationpractice\page\LoginPage.class
+com\vemser\automationpractice\test\CartTest.class
+com\vemser\automationpractice\test\AddressTest.class
+com\vemser\automationpractice\test\LoginTest.class
+com\vemser\automationpractice\page\BasePage.class
+com\vemser\automationpractice\page\AddressPage.class
+com\vemser\automationpractice\page\AccountPage.class
