@@ -1,0 +1,9 @@
+com\vemser\automationpractice\util\DataFakerGenerator.class
+com\vemser\automationpractice\dto\AccountDto.class
+com\vemser\automationpractice\dto\AddressDto.class
+com\vemser\automationpractice\factory\service\Elements.class
+com\vemser\automationpractice\dto\LoginDto.class
+com\vemser\automationpractice\factory\data\LoginData.class
+com\vemser\automationpractice\factory\service\SeleniumFactory.class
+com\vemser\automationpractice\factory\data\AddressData.class
+com\vemser\automationpractice\factory\data\AccountData.class
