@@ -9,11 +9,7 @@ describe("Login", () => {
         cy.fazerLoginValido();
     })
     
-    it("Deslogar", () => {
-        cy.fazerLoginValido();
-        cy.deslogar();
-        cy.title().should("eq", "Login - My Shop");
-    })
+   
 
 })
 

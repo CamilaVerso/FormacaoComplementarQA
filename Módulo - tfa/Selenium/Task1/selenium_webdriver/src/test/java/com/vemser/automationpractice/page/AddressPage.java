@@ -25,7 +25,7 @@ public class AddressPage extends BasePage{
     private static final By btnDelete = By.cssSelector("#center_column > div.addresses > div > div > ul > li.address_update > a:nth-child(2)");
     private static final By textPageMyAddresses = By.cssSelector("#center_column > h1");
     private static final By backToYourAddressesBtn = By.cssSelector("#center_column > ul > li > a");
-    private static final By addMyFirstAddressBtn = By.cssSelector(" #center_column > div > div > ul > li:nth-child(1) > a > span");
+    private static final By addMyFirstAddressBtn = By.cssSelector("#center_column > div > div > ul > li:nth-child(1) > a > span");
     private static final By textMyAccount = By.cssSelector("#center_column > h1");
     private static final By textYourAddress = By.cssSelector("#center_column > div > h1");
 

@@ -1,0 +1,31 @@
+export const addressSelector = {
+    selectors:{
+        homePageInfo: "#home-page-tabs > li.active > a",
+        homePageSignUpBtn: "#header > div.nav > div > div > nav > div.header_user_info > a",
+        companyField: "#company",
+        addressField: "#address1",
+        addressSecondaryField: "#address2",
+        cityField: "#city",
+        stateField: "#id_state",
+        zipPostalCodeField: "#postcode",
+        countryField: "#id_country",
+        homePhoneField: "#phone",
+        mobilePhoneField: "#phone_mobile",
+        additionalInformationField: "#other",
+        nameAddressField: "#alias",
+        btnSave: "#submitAddress",
+        btnDelete: "#center_column > div.addresses > div > div > ul > li.address_update > a:nth-child(2)",
+        textPageMyAddresses: "#center_column > h1",
+        backToYourAddressesBtn: "#center_column > ul > li > a",
+        addMyFirstAddressBtn: "#center_column > div > div > ul > li:nth-child(1) > a > span",
+        textMyAccount: "#center_column > h1",
+        textYourAddress: "#center_column > div > h1",
+        textAddressDeleted: "#center_column > p.alert.alert-warning",
+        textErrorAddressCreate: "#center_column > div > div > ol > li",
+        emailField: "#email",
+        passwordField: "#passwd",
+        signInBtn: "#SubmitLogin",
+        loginInfotext: "#center_column > p",
+    }
+
+}
