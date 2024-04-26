@@ -32,8 +32,8 @@ public class CartPage extends  BasePage{
 
     private static final By btnProceedToCheckoutInShopCart = By.cssSelector("#center_column > p.cart_navigation.clearfix > a.button.btn.btn-default.standard-checkout.button-medium");
     private static final By textAddresses =By.cssSelector("#columns > div.breadcrumb.clearfix");
-    private static final By btnProceedCheckoutInAddress = By.cssSelector(" #center_column > form > p > button > span");
-    private static final By textShipping = By.cssSelector(" #columns > div.breadcrumb.clearfix");
+    private static final By btnProceedCheckoutInAddress = By.cssSelector("#center_column > form > p > button > span");
+    private static final By textShipping = By.cssSelector("#columns > div.breadcrumb.clearfix");
     private static final By checkBoxAcceptTerms = By.cssSelector("#cgv");
     private static final By btnProceedToCheckoutInShipping = By.cssSelector("#form > p > button > span");
     private static final By textYourPaymentMethod = By.cssSelector("#columns > div.breadcrumb.clearfix");
