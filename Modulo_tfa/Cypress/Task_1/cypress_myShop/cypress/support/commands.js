@@ -26,3 +26,4 @@
 
 import "../support/page/login.page.js"
 import "../support/page/account.page.js"
+import "../support/page/address.page.js"

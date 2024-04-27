@@ -1,15 +1,14 @@
-
 /// <reference types="cypress" />
 
 
-describe("Fazer logout", () => {
+describe("Make logout", () => {
     beforeEach(()=>{
         cy.visit("/")
     })
     
-    it("Deslogar", () => {
-        cy.fazerLoginValido();
-        cy.deslogar();
+    it("Logout", () => {
+        cy.makeLoginValid();
+        cy.logout();
         cy.title().should("eq", "Login - My Shop");
     })
 })

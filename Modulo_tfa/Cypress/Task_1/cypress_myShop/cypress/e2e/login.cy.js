@@ -5,20 +5,8 @@ describe("Login", () => {
         cy.visit("/")
     })
 
-    it("Fazer login com dados válidos", () => {
-        cy.fazerLoginValido();
-    })
-    
-   
+    it("Login with valid data", () => {
+        cy.makeLoginValid();
+    })     
 
 })
-
-// describe("Login", ()=>{
-//     beforeEach(()=>{
-//         cy.visit("/")
-//     })
-    
-//     it.only("Verificar se está na home", () => {
-//         cy.title().should("eq", "My Shop")
-//     })
-// })

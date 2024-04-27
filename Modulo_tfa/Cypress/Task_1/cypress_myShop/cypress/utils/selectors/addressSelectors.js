@@ -1,7 +1,5 @@
 export const addressSelector = {
     selectors:{
-        homePageInfo: "#home-page-tabs > li.active > a",
-        homePageSignUpBtn: "#header > div.nav > div > div > nav > div.header_user_info > a",
         companyField: "#company",
         addressField: "#address1",
         addressSecondaryField: "#address2",
@@ -13,19 +11,24 @@ export const addressSelector = {
         mobilePhoneField: "#phone_mobile",
         additionalInformationField: "#other",
         nameAddressField: "#alias",
-        btnSave: "#submitAddress",
+        btnSave: "#submitAddress", //#submitAddress > span
         btnDelete: "#center_column > div.addresses > div > div > ul > li.address_update > a:nth-child(2)",
-        textPageMyAddresses: "#center_column > h1",
+        textPageMyAddresses: ".breadcrumb > :nth-child(5)",
         backToYourAddressesBtn: "#center_column > ul > li > a",
-        addMyFirstAddressBtn: "#center_column > div > div > ul > li:nth-child(1) > a > span",
-        textMyAccount: "#center_column > h1",
-        textYourAddress: "#center_column > div > h1",
-        textAddressDeleted: "#center_column > p.alert.alert-warning",
+        addMyFirstAddressBtn: "#center_column > div > div > ul > li:nth-child(1) > a > span", //'.myaccount-link-list > :nth-child(1) > a > span'
+        textMyAccount: "#center_column > h1", //.breadcrumb > :nth-child(5)
+        textYourAddress: ".info-title",
+        textAddressDeleted: ".alert > a",
         textErrorAddressCreate: "#center_column > div > div > ol > li",
-        emailField: "#email",
-        passwordField: "#passwd",
-        signInBtn: "#SubmitLogin",
-        loginInfotext: "#center_column > p",
+     
+    },
+
+    messages: {
+        confirmAddressPage: "My addresses",
+        confirmDelete: "Add a new address",
+        confirmPageNewAddress: "\n\t\t\t\t\tTo add a new address, please fill out the form below.\n\t\t\t",
+        errorAddressCreate: "The Zip/Postal code you've entered is invalid. It must follow this format: 00000",
     }
+    
 
 }

@@ -1,17 +1,16 @@
 /// <reference types="cypress" />
-import { accountData } from "../fixtures/accountData.js"
 
-describe("Criar conta", () => {
+describe("Create account", () => {
     beforeEach(()=>{
         cy.visit("/")
     })
 
-    it("Criar conta com dados válidos e deslogar", () => {
-        cy.criarContaComSucesso();
+    it("create account with valid data and logout", () => {
+        cy.createAccountSuccessfully();
     })
 
-    it("Criar conta com email inválido", () => {
-        cy.criarContaComEmailInvalido();
+    it("Create account with invalid email", () => {
+        cy.createAccountWithInvalidEmail();
     })    
    
 
