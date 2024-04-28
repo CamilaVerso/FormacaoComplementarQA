@@ -1,1 +1,1 @@
-Repositório dedicado as tasks de Postman, RestAssured, Selenum e Cypress para a formação complementar de QA
+Repositório dedicado as tasks de Postman, RestAssured, Selenium e Cypress para a formação complementar de QA
